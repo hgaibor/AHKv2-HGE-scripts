@@ -21,3 +21,7 @@ This script will allow you to improve your daily tasks by assigning custom key m
 - Custom key shortcuts for KiTTY 
 - Check `AHKv2-HGE-scripts.ini.example.txt` for usage information and function descriptions
 - Check `AHKv2-HGE-scripts.ahk_hotkeys.example.txt` for some possible shortcuts that can be created using this tool
+
+## History:
+ ### 2026-10-21  
+ - Refactored code to migrate from Autohotkey v1.x (EOL) to AHKv2

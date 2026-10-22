@@ -1,0 +1,369 @@
+# Refer to [Usage guide Wiki](https://github.com/hgaibor/AHKv2-HGE-scripts/wiki) for full description on each of the sections, and documentation on how to set this script. 
+
+# This .ini file will contain a base set of options to tweak and quick start, once the USAGE-GUIDE is read. 
+# Comments begin with # character
+# DO NOT PUT COMMENTS AFTER VARIABLES AS IT WILL BE PARSED AS PART OF THE ELEMENT
+
+[GeneralSettings]
+	WinEnvName="[ExamplePC]: "
+	RunScriptAsAdmin="no"
+	BrowsersProfiles-MaxBrowserArguments="10"
+	ShowOpenWebSiteWithInput-MaxOpenWebSiteInputs="10"
+	CreateOpenFolder_X-MaxFolderSlots=100
+	CreateOpenFolder_X-MaxOpenCreateFolderAndFileInputs="10"
+	RegExReplaceText_X-MaxReplaceTextSlots=100
+	BrowsersProfile-DefaultProfile="Default"
+
+[UserDefinedPaths]
+	# Trailing backslash character will be removed, include proper backslash when using these placeholders below at this .ini file
+	A_MyDocuments_Path="C:\Users\USER1\Documents"
+	A_Downloads_Path="C:\USER1\hugog\Downloads"
+	A_ProgramFiles_Path="C:\Program Files"
+	A_ProgramFiles_x86_Path="C:\Program Files (x86)"
+	A_UserFolder_Path="C:\Users\USER1"
+	A_User_Defined_Path_1="C:\TestFolder"
+	A_User_Defined_Path_2="C:\Portable_Apps"
+	A_User_Defined_Path_3="C:\Users\USER1\OneDrive"
+	A_User_Defined_Path_4=""
+	A_User_Defined_Path_5=""
+	A_User_Defined_Path_6=""
+	A_User_Defined_Path_7=""
+	A_User_Defined_Path_8=""
+	A_User_Defined_Path_9=""
+	A_User_Defined_Path_10=""
+	A_User_Defined_Path_11=""
+	A_User_Defined_Path_12=""
+	# PLACE path placeholders like this, as seen on sections below:
+	# {A_MyDocuments_Path}
+	# {A_Downloads_Path}
+	# {A_ProgramFiles_Path}
+	# {A_ProgramFiles_x86_Path}
+	# {A_UserFolder_Path}
+	# {A_User_Defined_Path_1}
+	# {A_User_Defined_Path_2}
+	# {A_User_Defined_Path_3}
+	# {A_User_Defined_Path_4}
+	# {A_User_Defined_Path_5}
+	# {A_User_Defined_Path_6}
+	# {A_User_Defined_Path_7}
+	# {A_User_Defined_Path_8}
+	# {A_User_Defined_Path_9}
+	# {A_User_Defined_Path_10}
+	# {A_User_Defined_Path_11}
+	# {A_User_Defined_Path_12}
+	
+# Leaving this for information, although most users won't really need this function
+[VPNSettings]
+	ClientIP=""
+	FQDN=""
+	Mask="255.255.255.255"
+	Gateway="10.0.0.0"
+	VpnName="Super Secret VPN"
+
+[BrowsersProfiles]
+	Default-DefinedBrowserExe="{A_ProgramFiles_Path}\Google\Chrome\Application\chrome.exe"
+	Default-DefinedBrowserPath="{A_ProgramFiles_Path}\Google\Chrome\Application\"
+	Default-DefinedBrowserUserProfile="--profile-directory="Default" "
+	Default-DefinedBrowserNewWindowArg="--new-window "
+	Default-DefinedBrowserNewTabArg=""
+	Default-DefinedBrowserArguments1=""{BASE_URL_REPLACE_HERE}" "
+	Default-DefinedBrowserArguments2=""
+	Default-DefinedBrowserArguments3=""
+
+	WebAsApp-DefinedBrowserExe="{A_ProgramFiles_Path}\Google\Chrome\Application\chrome.exe"
+	WebAsApp-DefinedBrowserPath="{A_ProgramFiles_Path}\Google\Chrome\Application\"
+	WebAsApp-DefinedBrowserUserProfile="--profile-directory="Default" "
+	WebAsApp-DefinedBrowserRunAsAdmin=""
+	WebAsApp-DefinedBrowserNewWindowArg=""
+	WebAsApp-DefinedBrowserNewTabArg=""
+	WebAsApp-DefinedBrowserArguments1="--app="{BASE_URL_REPLACE_HERE}" "
+	WebAsApp-DefinedBrowserArguments2=""
+	WebAsApp-DefinedBrowserArguments3=""
+
+[CreateOpenFolder]
+	BaseFolderPath1="{A_UserFolder_Path}\MyDocuments"
+	LocationName1="Documents"
+	FolderOperation1="Open_Create"
+
+	BaseFolderPath2="{A_UserFolder_Path}\Downloads"
+	LocationName2="Downloads folder"
+	FolderOperation2="Open_Folder"
+
+	BaseFolderPath3="{A_User_Defined_Path_3}"
+	LocationName3="OneDrive"
+	FolderOperation3="Open_Folder"
+
+	BaseFolderPath4="{A_UserFolder_Path}\Downloads"
+	LocationName4="Downloads folder"
+	FolderOperation4="Open_Folder"
+
+	BaseFolderPath5=""
+	LocationName5=""
+	FolderOperation5=""
+
+	BaseFolderPath6=""
+	LocationName6=""
+	FolderOperation6=""
+
+	BaseFolderPath7=
+	LocationName7=
+	FolderOperation7=
+
+	BaseFolderPath8=
+	LocationName8=
+	FolderOperation8=
+
+	BaseFolderPath9=
+	LocationName9=
+	FolderOperation9=
+
+	BaseFolderPath0=
+	LocationName0=
+	FolderOperation0=
+
+
+[ShowOrRunProgram]
+	AIMP-AhkExeName="ahk_exe AIMP.exe"
+	AIMP-AhkGroupName="AIMPInstances"
+	AIMP-ProgramName="AIMP"
+	AIMP-CommandExe="{A_ProgramFiles_Path}\AIMP\App\AIMP\AIMP.exe"
+	AIMP-CommandPath="{A_ProgramFiles_Path}\AIMP\App\AIMP"
+	AIMP-CommandArgs=
+	AIMP-RunAsAdmin="no"
+
+	St3-AhkExeName="ahk_exe sublime_text.exe"
+	St3-AhkGroupName="SublimeTextInstances"
+	St3-ProgramName="Sublime Text"
+	St3-CommandExe="{A_ProgramFiles_Path}\Sublime Text\sublime_text.exe"
+	St3-CommandPath="{A_ProgramFiles_Path}\Sublime Text\"
+	St3-CommandArgs=
+	St3-RunAsAdmin="no"
+
+	ZimWiki-AhkExeName="ahk_exe zim.exe"
+	ZimWiki-AhkGroupName="ZimWikiInstances"
+	ZimWiki-ProgramName="Zim Wiki"
+	ZimWiki-CommandExe="{A_ProgramFiles_Path}\Zim Desktop Wiki\zim.exe"
+	ZimWiki-CommandPath="{A_ProgramFiles_Path}\Zim Desktop Wiki\"
+	ZimWiki-CommandArgs=""
+	ZimWiki-RunAsAdmin="no"
+
+	WinRDP-AhkExeName="ahk_exe mstsc.exe"
+	WinRDP-AhkGroupName="WinRDPInstances"
+	WinRDP-ProgramName="Remote Desktop"
+	WinRDP-CommandExe="C:\Windows\system32\mstsc.exe"
+	WinRDP-CommandPath="C:\Windows\system32\"
+	WinRDP-CommandArgs=
+	WinRDP-RunAsAdmin="no"
+
+	WinCMD-AhkExeName="ahk_exe WindowsTerminal.exe"
+	WinCMD-AhkGroupName="WinCMDInstances"
+	WinCMD-ProgramName="Windows CMD (Terminal)"
+	WinCMD-CommandExe="cmd.exe /k "cd /d {A_UserFolder_Path}""
+	WinCMD-CommandPath=""
+	WinCMD-CommandArgs=
+	WinCMD-RunAsAdmin="no"
+
+	Obsidian-AhkExeName="ahk_exe Obsidian.exe"
+	Obsidian-AhkGroupName="ObsidianInstances"
+	Obsidian-ProgramName="Obsidian KB"
+	Obsidian-CommandExe="{A_UserFolder_Path}\AppData\Local\Programs\Obsidian\Obsidian.exe"
+	Obsidian-CommandPath="{A_UserFolder_Path}AppData\Local\Programs\Obsidian"
+	Obsidian-CommandArgs=""
+	Obsidian-RunAsAdmin="no"
+
+	KittyConfig-AhkExeName="KiTTY Configuration"
+	KittyConfig-AhkGroupName="KittyConfigInstances"
+	KittyConfig-ProgramName="Kitty"
+	KittyConfig-CommandExe="{A_User_Defined_Path_5}\Apps\Kitty\KittyLKL.exe"
+	KittyConfig-CommandPath="{A_User_Defined_Path_5}\Apps\Kitty\"
+	KittyConfig-CommandArgs=
+	KittyConfig-RunAsAdmin="no"
+
+	KittySessions-AhkExeName="ahk_class KiTTY"
+	KittySessions-AhkGroupName="KittySessionsInstances"
+	KittySessions-ProgramName="Kitty"
+	KittySessions-CommandExe="{A_User_Defined_Path_5}\Apps\Kitty\KittyLKL.exe"
+	KittySessions-CommandPath="{A_User_Defined_Path_5}\Apps\Kitty\"
+	KittySessions-CommandArgs=
+	KittySessions-RunAsAdmin="no"
+
+	SlackDesktop-AhkExeName="ahk_exe slack.exe"
+	SlackDesktop-AhkGroupName="SlackInstances"
+	SlackDesktop-ProgramName="Slack Desktop App"
+	SlackDesktop-CommandExe="{A_UserFolder_Path}\AppData\Local\slack\slack.exe"
+	SlackDesktop-CommandPath="{A_UserFolder_Path}\AppData\Local\slack\"
+	SlackDesktop-CommandArgs=""
+	SlackDesktop-RunAsAdmin="no"
+
+
+[ShowOpenWebSiteWithInput]
+	WsSend-SiteName="New WhatsApp message"
+	WsSend-BaseUrl="https://web.whatsapp.com/send?text&app_absent=1&phone=593{REPLACE_INPUT1}"
+	WsSend-AhkSearchWindowTitle="WhatsApp"
+	WsSend-AhkGroupName="WSInstances"
+	WsSend-OpenWebSiteOperation="Copy_URL"
+	WsSend-NameInput1="Phone number"
+	WsSend-RegExDeleteFromInput1="i)[^\d]|^0"
+	# WsSend-RegExDeleteFromInput1="i)[^\d]"
+	WsSend-RegExInsertInput1="i)\{REPLACE_INPUT1\}"
+
+	YouTubeVideo-SiteName="YouTube"
+	# YouTubeVideo-BrowserProfile="Default"
+	YouTubeVideo-OpenTarget="New_Window"
+	YouTubeVideo-AhkSearchWindowTitle="YouTube Video"
+	YouTubeVideo-AhkGroupName="YouTubeInstances"
+	YouTubeVideo-BaseUrl="https://youtube.com"
+	YouTubeVideo-OpenWebSiteOperation="Open_Website"
+
+	YouTubeMusic-SiteName="YouTube Music"
+	# YouTubeMusic-BrowserProfile="Default"
+	YouTubeMusic-OpenTarget="New_Window"
+	YouTubeMusic-AhkSearchWindowTitle="- YouTube Music"
+	YouTubeMusic-AhkGroupName="YouTubeMusicInstances"
+	YouTubeMusic-BaseUrl="https://music.youtube.com/"
+	YouTubeMusic-OpenWebSiteOperation="Open_Website"
+
+	GoogleDrive-SiteName="Google Drive"
+	GoogleDrive-BrowserProfile="Default"
+	GoogleDrive-OpenTarget="New_Window"
+	GoogleDrive-AhkSearchWindowTitle="Google Drive"
+	GoogleDrive-AhkGroupName="GoogleDrivePanelInstances"
+	GoogleDrive-BaseUrl="https://drive.google.com/drive/u/0/home"
+	GoogleDrive-OpenWebSiteOperation="Open_Website"
+
+	GMail-SiteName="Google Mail"
+	GMail-BaseUrl="https://mail.google.com/mail/u/0/#inbox"
+	GMail-AhkSearchWindowTitle="WinTittle Here"
+	GMail-AhkGroupName="GmailInstances"
+	GMail-OpenTarget="New_Window"
+	GMail-OpenWebSiteOperation="Open_Website"
+
+
+	Whois1-SiteName="Whois lookup at https://ipinfo.io/"
+	Whois1-BaseUrl="https://ipinfo.io/{REPLACE_INPUT1}"
+	Whois1-BrowserProfile="Default"
+	Whois1-AhkSearchWindowTitle="DO_NOT_SEARCH"
+	Whois1-AhkGroupName="WhoisInstances"
+	Whois1-OpenTarget="New_Window"
+	Whois1-OpenWebSiteOperation="Open_Website"
+	Whois1-NameInput1="Enter IP address"
+	; Whois1-RegExDeleteFromInput1=""
+	Whois1-RegExDeleteFromInput1="i)[^\d\.\:]|"
+	Whois1-RegExInsertInput1="i)\{REPLACE_INPUT1\}"
+
+	Whois2-SiteName="Whois lookup at https://ip.me/whois/"
+	Whois2-BaseUrl="https://ip.me/whois/{REPLACE_INPUT1}"
+	Whois2-BrowserProfile="Default"
+	Whois2-AhkSearchWindowTitle="DO_NOT_SEARCH"
+	Whois2-AhkGroupName="WhoisInstances"
+	Whois2-OpenTarget="New_Window"
+	Whois2-OpenWebSiteOperation="Open_Website"
+	Whois2-NameInput1="Enter IP address"
+	; Whois2-RegExDeleteFromInput1=""
+	Whois2-RegExDeleteFromInput1="i)[^\d\.\:]|"
+	Whois2-RegExInsertInput1="i)\{REPLACE_INPUT1\}"
+
+[CreateOpenFolder_X]
+	# Folder slots for ProcessFolderSlot_X function
+	# Numeric _ID must be unique for each folderslot under this section
+	# USER FOLDERS (you can repeat same folder path with different Labels, see 22 and 25)
+	BaseFolderPath_21="{A_UserFolder_Path}\OneDrive"
+	LocationName_21="OneDrive"
+	FolderLabel_21="CLD"
+	FolderOperation_21="Open_Folder"
+
+	BaseFolderPath_22="{A_UserFolder_Path}\Downloads"
+	LocationName_22="Downloads folder"
+	FolderLabel_22="Downloads"
+	FolderOperation_22="Open_Folder"
+
+	BaseFolderPath_23="{A_UserFolder_Path}\OneDrive\Documents"
+	LocationName_23="Documents folder"
+	FolderLabel_23="Docs"
+	FolderOperation_23="Open_Folder"
+
+	BaseFolderPath_25="{A_UserFolder_Path}\Downloads"
+	LocationName_25="Downloads folder"
+	FolderLabel_25="DN"
+	FolderOperation_25="Open_Folder"
+
+	# NEW  parameters for the `Open_Create_Folder_And_File` mode
+	BaseFolderPath_1="{A_UserFolder_Path}"
+	LocationName_1="Personal documents folder"
+	FolderLabel_1="docs"
+	FolderOperation_1="Open_Create_Folder_And_File"
+		
+	; This convention may be a little different, create as many inputs as needed in the following format and without [] brackets
+	; Folder-NameInput[input_loop_index]_[FolderSlot ID]
+
+	; VariableFolderPath_XXXX will contain the placeholders that RegEX rules will replace, or the wide placeholders defined under the 
+	; [Script-Wide placeholder variables] section 
+	VariableFolderPath_1="Documents\test{REPLACE_INPUT1}\{REPLACE_INPUT2}"
+
+	; Folder Input 1 and its RegEx rules, if not needed, comment thre lines below
+	Folder-NameInput1_1="Document number"
+	Folder-RegExDeleteFromInput1_1="i)[^\d]|^0"
+	Folder-RegExInsertInput1_1="i)\{REPLACE_INPUT1\}"
+
+	; Folder Input 2 and its RegEx rules, if not needed, comment thre lines below
+	Folder-NameInput2_1="Second number"
+	Folder-RegExDeleteFromInput2_1="i)[^\d]|^0"
+	Folder-RegExInsertInput2_1="i)\{REPLACE_INPUT2\}"
+		
+	; Same approach for FileName, create as many inputs as desired with the three fields
+	; File-CreateWithName_XXXX will contain the placeholders that RegEX rules will replace, or the wide placeholders defined under the 
+	; [Script-Wide special placeholder variables] section on the USAGE-GUIDE document
+	File-CreateWithName_1="{FILE_REPLACE_INPUT1}-{FILE_REPLACE_INPUT2}-notes.md"
+	; File-NameInput[input_loop_index]_[SLOT ID]
+
+	; File Input 1 and its RegEx rules
+	File-NameInput1_1="File number"
+	File-RegExDeleteFromInput1_1="i)[^\d]|^0"
+	File-RegExInsertInput1_1="i)\{FILE_REPLACE_INPUT1\}"
+
+	; File Input 2 and its RegEx rules
+	File-NameInput2_1="File additional serial"
+	File-RegExDeleteFromInput2_1="i)[^\d]|^0"
+	File-RegExInsertInput2_1="i)\{FILE_REPLACE_INPUT2\}"
+		
+	; (OPTIONAL) Create contents for this file, this will allow to create virtually unlimited lines in a file, 
+	; each line goes in a variable with the format File-CreateWithContents[loop_index]_[SLOT ID]
+	File-CreateWithContents1_1="File created at: {A_DATE_NOW}"
+	File-CreateWithContents2_1="# CASE: "
+	File-CreateWithContents3_1=""
+	File-CreateWithContents4_1="Document ID:"
+	File-CreateWithContents5_1="Notes:"
+	File-CreateWithContents6_1="Additional line:"
+	File-CreateWithContents7_1=""
+	File-CreateWithContents8_1="Client info:"
+	File-CreateWithContents9_1=""
+
+
+
+[RegExReplaceText_X]
+	# ReplaceTextName_10="MAC with colons"
+	# ReplaceTextDescription_10="MAC format replace, xxxxx to xx:xx:xx"
+	# ReplaceTextLabel_10="MAC"
+	# # ReplaceTextRegExString_10 is a RegEx string to search, THIS IS REQUIRED
+	# ReplaceTextRegExString_10="(?<!^.)(..)(?=[^$])"
+	# # ReplaceTextReplaceString can be EMPTY, it will remove matched characters
+	# ReplaceTextReplaceString_10="$1:"
+	# # SELECT ONE OPTION BELOW, ONLY USE THESE TWO VALUES
+	# ReplaceTextOperation_10="Copy_to_clipboard"
+	# ReplaceTextOperation_10="Simulate_Typing"
+
+	ReplaceTextName_10="MAC with colons"
+	ReplaceTextDescription_10="MAC format replace, xxxxx to xx:xx:xx"
+	ReplaceTextLabel_10="MAC"
+	ReplaceTextRegExString_10="(?<!^.)(..)(?=[^$])"
+	ReplaceTextReplaceString_10="$1:"
+	ReplaceTextOperation_10="Copy_to_clipboard"
+	; ReplaceTextOperation_10="Simulate_Typing"
+
+
+	ReplaceTextName_11="MAC with NO colons"
+	ReplaceTextDescription_11="MAC format replace, xx:xx:xx to xxxxx"
+	ReplaceTextLabel_11="ALPHA"
+	ReplaceTextRegExString_11="[:.\s\-]"
+	ReplaceTextReplaceString_11=""
+	ReplaceTextOperation_11="Copy_to_clipboard"

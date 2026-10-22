@@ -1,0 +1,210 @@
+; After editing this file, rename it remove the .example.txt extension and leave it with .ahk_hotkeys as its final extension
+; Despite the odd extension name, its basically an AHK script file, in order to allow to have several scripts running 
+; The main code will look for a file that has the same base script name and add the "_hotkeys" extension
+; Migrated from AHK V1, and testing on V2, additional functions may come soon
+
+; KEY special characters definition 
+	; # --> Windows key
+	; ^ --> Control key
+	; ! --> Alt key
+	; <!> --> AltGr key
+	; + --> Shift key
+	; < --> Left key pair (for control, shift and alt keys)
+	; > --> Right key pair (for control, shift and alt keys)
+	; SPACE --> Space bar key
+	; Numpad0 --> Number pad 0 
+
+; Menu definition
+	A_TrayMenu.Add() ; Separator
+	A_TrayMenu.Add("Show hotkeys list", (*) => show_hotkeys_list())
+	A_TrayMenu.Add("Reload script", (*) => Reload())
+	A_TrayMenu.Add("Open ini file", (*) => open_ini_file())
+
+
+; Hot Keys definition 
+; ===================================================
+	+#x::LbSearchAndClose()
+
+	+#F1::show_hotkeys_list()  ; Hotkeys mapping information (please fill this list manually below to reflect your changes)
+		
+	; ^!r::Reload  ; Assign Ctrl-Alt-R as a hotkey to reload the script.
+	>+#r::Reload  ; Assign Right Shift-Windows-R as a hotkey to reload the script.
+	+#c::AddIPtoRoute() ; This function will add the IP to use the VPN route, parameters defined at the [VPNSettings] section
+	>+#t::TestPlaceHolderPaths()
+	; +#w::ShowOrRunWebSite("WS") ; DEPRECATED FUNCTION USE "ShowOpenWebSiteWithInput"
+	;+#s::ShowOrRunWebSite("WebSlack") ; DEPRECATED FUNCTION USE "ShowOpenWebSiteWithInput"
+	
+	; SHOW OR RUN EXE PROGRAMS
+		+#a::ShowOrRunProgram("AIMP") 
+		+#a::ShowOrRunProgram("KittyConfig")
+		+#o::ShowOrRunProgram("Obsidian")
+		+#p::ShowOrRunProgram("Kitty") ; Putty alternative, very good
+		+#t::ShowOrRunProgram("TaskCoach")
+		+#z::ShowOrRunProgram("ZimWiki")
+		^#a::ShowOrRunProgram("KittySessions")
+		^#r::ShowOrRunProgram("WinRDP") ; Windows remote desktop
+		^#s::ShowOrRunProgram("St3") ; SublimeText
+
+	; WEB SITE SHORTCUTS
+		+#g::ShowOpenWebSiteWithInput("Gemini")
+		>+#w::ShowOpenWebSiteWithInput("WsSend") ; Ask for mobile number, then incorporate it to a web URL
+
+	; WHOIS Lookup sources
+		+#1::ShowOpenWebSiteWithInput("Whois1")
+		+#2::ShowOpenWebSiteWithInput("Whois2")
+	
+	; Mouse functions HOME and END emulation
+		!XButton1::Send("{End}")
+		+XButton1::Send("{Backspace}")
+		!MButton::Send("{Enter}")
+		!XButton2::Send("{Home}")
+
+	; Media key emulation
+		+#8::Send("{Media_Prev}")
+		+#9::Send("{Media_Next}")
+		+#p::Send("{Media_Play_Pause}")
+		+#0::Send("{Media_Stop}")
+	
+		#MButton::ToggleAlwaysOnTop()
+		^#MButton::MouseComeHome()
+		+#x::MouseComeHome()
+		^#x::MouseComeHome()
+
+	; Send clipboard contents as individual keystrokes, useful when you can't paste into browsers or remote consoles
+		^!Insert::WrittenPaste()
+
+	;Slot implementation of CreateOpenFolder() function
+		; Unlimited folder slots implementation
+		+#e::ProcessFolderSlot_X() 
+		; +#e::ProcessFolderSlot_X("Label in quotes")
+		; +#e::ProcessFolderSlot_X(numeric_ID_defined_in_INI_file)
+
+	; [HGE] Workaround for lack of additional mouse buttons and really crappy and expensive mice with them
+		; ^MButton::Send("{Browser_Back}") ; [HGE] Send browser back
+		; !MButton::Send("{Browser_Forward}") ; [HGE] Send browser forward
+
+
+	; Slot-based RegEx text replacement function. Useful to format repetitive text or remove certain text on a regular basis
+		+#r::ProcessRegExReplaceText_X()
+		; +#r::ProcessRegExReplaceText_X(numeric_ID_defined_in_INI_file)
+		; +#r::ProcessRegExReplaceText_X("label_in_quotes")
+
+; Function to test custom placeholde paths or variables defined on the .INI file
+TestPlaceHolderPaths() {
+	BaseString := IniRead(IniSettingsFilePath, "UserDefinedPaths", "TestMe", "")
+	BaseString := ReplacePlaceholderStrings(BaseString)
+	MsgBox(BaseString)
+}
+
+
+; Function to bring mouse cursor to the center of current active application monitor
+; Useful in multi-monitor scenarios where you switch between windows and lose track of the cursor
+MouseComeHome() {
+	CoordMode("Mouse", "Window")
+	WinGetPos(, , &ActWinWidth, &ActWinHeight, "A")
+	MouseMove(ActWinWidth / 2, ActWinHeight / 2, 0)
+}
+
+
+; App-specific hot Keys definition for KiTTY
+; ===================================================
+
+	#HotIf WinActive("ahk_class PuTTYConfigBox")
+		; Validation to enable  start button quick key press on Putty, very convenient 
+		; Putty Window info
+		; KiTTY Configuration
+		; ahk_class PuTTYConfigBox
+		; ahk_exe KITTY_~1.EXE
+		
+		; Control for start button
+		; ClassNN:	Button2
+		; Text:	Start
+		!s:: {
+			ControlFocus("Button2")
+			ControlSend("{Space}", "Button2")
+		}
+
+		!a:: {
+			ControlFocus("Edit1")
+		}
+	#HotIf
+
+	#HotIf WinActive("ahk_class KiTTY")
+		^!Up::Send("{PgUp}")
+		^!Down::Send("{PgDn}")
+
+		; Duplicate session: Opens KiTTY system menu (Alt+Space), then presses 'd'
+		!d:: {
+		    KeyWait("Alt")
+		    Send("!{Space}d")
+		}
+
+		; Copy all text to clipboard: Opens KiTTY system menu (Alt+Space), then presses 'o'
+		^!c:: {
+		    KeyWait("Ctrl")
+		    KeyWait("Alt")
+		    Send("!{Space}o")
+		}
+
+		; Start WinSCP
+		^!s:: {
+		    Send("+{F3}")
+		}
+
+		; Clear window text and scrollback: Ctrl+L, then Alt+Space followed by 'l'
+		^!l:: {
+		    Send("^l")
+		    KeyWait("Ctrl")
+		    KeyWait("Alt")
+		    Sleep(50)
+		    Send("!{Space}l")
+		}
+	#HotIf
+
+	; Automatically focus ACCEPT button for KiTTY new server connection
+	#HotIf WinActive("ahk_class #32770")
+		!a:: {
+			ControlFocus("Button2")
+			ControlSend("{Space}", "Button2")
+		}
+	#HotIf
+
+; Hot Keys list (manually created) 
+; ===================================================
+show_hotkeys_list() {
+	MsgBox(
+		"=== Currently set hotkeys === `n`n"
+		. " - Shift+Win+F1 --> Show this help menu `n"
+		. " - RShift+Win+r --> Reload this Script `n"
+		. " - Shift+Win+w --> ShowOrRunWebSite(`"WSDesktop`") `n"
+		. " - Shift+Win+s --> ShowOrRunWebSite(`"SlackDesktop`") `n"
+		. " - Shift+Win+f --> ShowOpenWebSiteWithInput(`"FirefoxSPTx`") `n"
+		. " - Shift+Win+m --> ShowOpenWebSiteWithInput(`"WorkMail`") `n"
+		. " - Shift+Win+h --> ShowOpenWebSiteWithInput(`"GMail`") `n"
+		. " - Shift+Win+y --> ShowOpenWebSiteWithInput(`"YouTube`") `n"
+		. " - Shift+Win+c --> ShowOpenWebSiteWithInput(`"Calendar`") `n"
+		. " - Shift+Win+z --> ShowOpenWebSiteWithInput(`"Helpdesk`") `n"
+		. " - LShift+Win+w --> ShowOpenWebSiteWithInput(`"WsSend`") `n"
+		. " - Shift+Win+a --> ShowOrRunProgram(`"KittyConfig`") `n"
+		. " - Ctrl+Win+a --> ShowOrRunProgram(`"KittySessions`") `n"
+		. " - Shift+Win+o --> ShowOrRunProgram(`"Obsidian`") `n"
+		. " - Ctrl+Win+r --> ShowOrRunProgram(`"WinRDP`") `n"
+		. " - Ctrl+Win+s --> ShowOrRunProgram(`"St3`") `n"
+		. " - Win+MouseMidBtn:: ToggleAlwaysOnTop() `n"
+		. " - Ctrl+MouseMidBtn --> Send `"Browser_Back`" `n"
+		. " - Alt+MouseMidBtn --> Send `"Browser_Forward`" `n"
+		. " - Ctrl+Alt+Insert --> Write clipboard as key presses `n"
+		. " - Shift+Win+e --> Show/Open folder slot X, enter ID of the slot or label, press `"e`" for list of slots `n`n"
+		. " - Shift+Win+r --> ReplaceText slot (unlimited), press `"e + ENTER`" for list of ReplaceText slots `n"
+		. "=== In App hotkeys === `n"
+		. " - Alt+s --> Start Kitty loaded session `n"
+		. " - Alt+a --> Focus Kitty host address bar `n"
+		. " - Alt+a --> Accept Kitty host session certificate `n",
+		A_ScriptName . " script hotkeys",
+		64
+	)
+}
+
+LbSearchAndClose(*) {
+	SearchAndClose("Restoring Network Connections", "Alt+F4")
+}
